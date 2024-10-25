@@ -37,7 +37,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('http://127.0.0.1:8000/')  # Replace 'home' with the correct redirect after login
+                return redirect('/')  # Replace 'home' with the correct redirect after login
             else:
                 messages.error(request, 'Invalid credentials')
     else:
@@ -46,4 +46,4 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('http://127.0.0.1:8000/')
+    return redirect('/')
