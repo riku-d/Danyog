@@ -1,0 +1,11 @@
+version: 1
+services:
+  - type: web
+    name: danyog
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn danyog.wsgi"
+    plan: free
+    routes:
+      - src: /
+        dest: danyog.onrender.com
