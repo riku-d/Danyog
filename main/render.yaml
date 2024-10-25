@@ -3,8 +3,8 @@ services:
   - type: web
     name: danyog
     env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn danyog.wsgi"
+    buildCommand: "cd main && pip install -r requirements.txt"
+    startCommand: "cd main && gunicorn danyog.wsgi"
     plan: free
     routes:
       - src: /
