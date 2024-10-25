@@ -56,8 +56,8 @@ Danyog is a web-based platform designed to connect people who want to donate unu
 
 ## Screenshots
 
-![Danyog Screenshot](screenshots/danyog_main.png)
-*Include screenshots to highlight donation listings, orphanage orders, and the user interface.*
+![Danyog Screenshot](main/screenshots/danyog_main.png)
+
 
 ## Contributing
 
