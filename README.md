@@ -1,6 +1,6 @@
 # Danyog
 
-Danyog is a web-based platform designed to connect people who want to donate unused items with orphanages that can benefit from these donations. By facilitating this exchange, Danyog aims to bring smiles to those in need by repurposing items that would otherwise go unused. You can visit the live site [here](https://danyog.onrender.com/).
+Danyog is a web-based platform designed to connect people who want to donate unused items with orphanages that can benefit from these donations. By facilitating this exchange, Danyog aims to bring smiles to those in need by repurposing items that would otherwise go unused. You can visit the live site here: [Danyog](https://danyog.onrender.com/).
 
 ## Table of Contents
 
