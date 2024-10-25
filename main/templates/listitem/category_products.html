@@ -1,0 +1,44 @@
+<!-- listitem/category_products.html -->
+{% extends 'partials/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Items</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/">Home</a>
+                        <span>{{ category_name }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <h2>Products in {{ category_name }}</h2>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="featured__item">
+                    <div class="featured__item__pic">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </div>
+                    <div class="featured__item__text centered-text">
+                        <h6>{{ product.name }}</h6>
+                        <h5>{{ product.description }}</h5>
+                    </div>
+                    
+                </div>
+            </div>
+        {% empty %}
+            <p>No products found in this category.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

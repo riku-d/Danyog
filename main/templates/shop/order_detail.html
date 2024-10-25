@@ -1,0 +1,52 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Order #{{ order.id }} Details</h2>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Item Name:</strong> {{ order.item.name }}</li>
+                <li class="list-group-item"><strong>Quantity:</strong> {{ order.item.quantity }}</li>
+                <li class="list-group-item"><strong>Order Date:</strong> {{ order.created_at }}</li>
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <!-- Display the ordered item's picture -->
+            <h4>Ordered Item Image</h4>
+            <img src="{{ order.item.image.url }}" alt="{{ order.item.name }}" class="img-fluid w-50">
+        </div>
+        
+        
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <h4>Upload Proof of Delivery</h4>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="proof_image">Upload Picture</label>
+                    <input type="file" name="proof_image" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="review">Review</label>
+                    <textarea name="review" class="form-control" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="site-btn mt-3">Submit Proof</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <a href="{% url 'order_list' %}" class="btn btn-secondary">Back to Orders</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

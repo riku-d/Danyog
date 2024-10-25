@@ -1,0 +1,205 @@
+{% extends "partials/base.html" %}
+{% block content %}
+    <!-- Header Section End -->
+{% load static %}
+
+    <section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Danyog</h2> 
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>    
+    <br>
+    <!-- Hero Section Begin -->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <i class="fa fa-bars"></i>
+                            <span>All Products</span>
+                        </div>
+                        <ul>
+                            <li><a href="{% url 'listitem:category_products' 'Books' %}">Books</a></li>
+                            <li><a href="{% url 'listitem:category_products' 'Clothes' %}">Clothes</a></li>
+                            <li><a href="{% url 'listitem:category_products' 'Furniture' %}">Furniture</a></li>
+                            <li><a href="{% url 'listitem:category_products' 'Food' %}">Food</a></li>
+                            <li><a href="{% url 'listitem:category_products' 'Toys' %}">Toys</a></li>
+                            <li><a href="{% url 'listitem:category_products' 'Utensils' %}">Utensils</a></li>
+                            <li><a href="{% url 'listitem:category_products' 'Daily Necessities' %}">Daily Necessities</a></li>
+                        </ul>
+                    </div>
+                    
+                     
+                </div>
+                <div class="col-lg-9">
+                    <div class="hero__item set-bg" data-setbg="{%static 'img/hero/banner.webp'%}">
+                        <div class="hero__text">
+                            <span></span>
+                            <h2>DANYOG <br />Making lives<br /> easier!</h2>
+                            <p>Free Pickup and Delivery Available</p>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'listitem:add_item' %}" class="primary-btn">Donate Now</a>
+                            {% else %}
+                                <a href="{% url 'userauth:login' %}" class="primary-btn">Login to Donate</a>
+                            {% endif %}
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+
+    <!-- Featured Section Begin -->
+    <!-- Featured Section -->
+<section class="featured spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Featured Products</h2>
+                </div>
+
+                <!-- Search Form inside the Featured Section -->
+                <form method="GET" class="mb-4">
+                    <div class="input-group">
+                        <select name="category" class="form-control">
+                            <option value="">All category</option>
+                            <option value="Books" {% if search_query == 'Books' %}selected{% endif %}>Books</option>
+                            <option value="Clothes" {% if search_query == 'Clothes' %}selected{% endif %}>Clothes</option>
+                            <option value="Furniture" {% if search_query == 'Furniture' %}selected{% endif %}>Furniture</option>
+                            <option value="Food" {% if search_query == 'Food' %}selected{% endif %}>Food</option>
+                            <option value="Toys" {% if search_query == 'Toys' %}selected{% endif %}>Toys</option>
+                            <option value="Utensils" {% if search_query == 'Utensils' %}selected{% endif %}>Utensils</option>
+                            <option value="Daily Necessities" {% if search_query == 'Daily Necessities' %}selected{% endif %}>Daily Necessities</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-success">Search</button> <!-- Green search button -->
+                        </div>
+                    </div>
+                </form>
+                <!-- End of Search Form -->
+            </div>
+        </div>
+
+        <div class="row featured__filter">
+            <!-- Display filtered or all items here -->
+            {% for item in all_items %}
+            <div class="col-lg-3 col-md-4 col-sm-6 mix">
+                <div class="featured__item">
+                    <div class="featured__item__pic set-bg" data-setbg="{{ item.image.url }}">
+                        <ul class="featured__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="featured__item__text">
+                        <h6><a href="#">{{ item.name }}</a></h6>
+                        <p>Category: {{ item.category.name }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No products found for this category.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+    
+    
+    
+    <!-- Featured Section End -->
+
+    <!-- Banner Begin -->
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="{% static 'img/banner/banner-01.jpg' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="{% static 'img/banner/banner-02.jpg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner End -->
+
+    <!-- Blog Section Begin -->
+    <section class="from-blog spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title from-blog__title">
+                        <h2>From The Blog</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="blog__item">
+                        <div class="blog__item__pic">
+                            <img src="{% static 'img/blog/blog-01.jpg' %}" alt="">
+                        </div>
+                        <div class="blog__item__text">
+                            <ul>
+                                <li><i class="fa fa-calendar-o"></i> July 22, 2024</li>
+                                <li><i class="fa fa-comment-o"></i> 5</li>
+                            </ul>
+                            <h5><a href="#">Untold stories of Orphans</a></h5>
+                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="blog__item">
+                        <div class="blog__item__pic">
+                            <img src="{% static 'img/blog/blog-02.jpg' %}" alt="">
+                        </div>
+                        <div class="blog__item__text">
+                            <ul>
+                                <li><i class="fa fa-calendar-o"></i> October 17,2024</li>
+                                <li><i class="fa fa-comment-o"></i> 5</li>
+                            </ul>
+                            <h5><a href="#">Making a happier world</a></h5>
+                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="blog__item">
+                        <div class="blog__item__pic">
+                            <img src="{% static 'img/blog/blog-03.jpg' %}" alt="">
+                        </div>
+                        <div class="blog__item__text">
+                            <ul>
+                                <li><i class="fa fa-calendar-o"></i>Septemer 07, 2024 </li>
+                                <li><i class="fa fa-comment-o"></i> 5</li>
+                            </ul>
+                            <h5><a href="#">Great initiatives taking place around the world</a></h5>
+                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Section End -->
+
+   
+    {% endblock content %}

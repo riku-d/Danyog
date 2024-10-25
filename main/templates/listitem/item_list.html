@@ -1,0 +1,95 @@
+{% extends "partials/base.html" %}
+{% block content %}
+{% load static %}
+
+<section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Your Listed Items</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/">Home</a>
+                        <span>Your Listed Items</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <!-- Main Items Section -->
+        <div class="col-lg-8">
+            <h2>Your Items</h2>
+            <hr>
+
+            <!-- Search Dropdown for Categories -->
+            <form method="GET" class="mb-4">
+                <div class="input-group">
+                    <select name="category" class="form-control">
+                        <option value="">Select a category</option>
+                        {% for category in categories %}
+                            <option value="{{ category.name }}" {% if category.name == selected_category %}selected{% endif %}>
+                                {{ category.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-success">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row">
+                {% for item in items %}
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ item.name }}</h5>
+                                <p class="card-text">{{ item.description }}</p>
+                                <img src="{{ item.image.url }}" alt="{{ item.name }}" class="img-fluid" style="width: 100%; height: auto;">
+                                
+                                <!-- Display category and quantity -->
+                                <p><strong>Category:</strong> {{ item.category.name }}</p>
+                                <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+
+                                <div class="mt-3 d-flex justify-content-between">
+                                    <a href="{% url 'listitem:update_item' item.id %}" class="btn btn-primary">Update</a>
+                                    <form action="{% url 'listitem:delete_item' item.id %}" method="POST" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No items to display.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Sidebar for Delivery Proofs -->
+        <div class="col-lg-4">
+            <h3>Proofs of Delivery</h3>
+            <hr>
+            {% if proofs %}
+                <ul class="list-group">
+                    {% for proof in proofs %}
+                        <li class="list-group-item">
+                            <h5>Order #{{ proof.order.id }} - {{ proof.order.item.name }}</h5>
+                            <p><strong>Review:</strong> {{ proof.review }}</p>
+                            <img src="{{ proof.image.url }}" alt="Proof image" class="img-fluid mb-3" style="max-width: 100%;">
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No proof of delivery submitted yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

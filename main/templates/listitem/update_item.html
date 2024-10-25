@@ -1,0 +1,12 @@
+{% extends "partials/base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Update Item</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Update</button>
+        <a href="{% url 'listitem:item_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

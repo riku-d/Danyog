@@ -1,0 +1,16 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Delete Item</h2>
+    <p>Are you sure you want to delete the following item?</p>
+    <h3>{{ item.name }}</h3>
+    <p><strong>Category:</strong> {{ item.category.name }}</p>  <!-- Display the category -->
+    <p><strong>Quantity:</strong> {{ item.quantity }}</p>  <!-- Display the quantity -->
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="{% url 'listitem:item_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

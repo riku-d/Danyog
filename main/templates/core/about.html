@@ -1,0 +1,80 @@
+{% extends "partials/base.html" %}
+{% block content %}
+{% load static %}
+
+
+
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>About Us</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/">Home</a>
+                            <span>About Us</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <main class="container my-5">
+        <h1 class="text-center display-4 font-weight-bold">Welcome to Danyog</h1>
+        <p class="text-center lead">Making lives easier through charitable donations!</p>
+    
+        <!-- About Danyog Section -->
+        <section class="my-5">
+            <h2 class="font-weight-bold" style="font-size: 2rem;">About Danyog</h2>
+            <p>Danyog is a charity platform that connects people who wish to donate their old items to orphanages and those in need. Our initiative spreads smiles across Kolkata and beyond.</p>
+            <p>We offer a variety of services, including:</p>
+            <ul>
+                <li>Connecting donors with orphanages and individuals in need.</li>
+                <li>Providing essential items like food, clothing, and shelter to the less fortunate.</li>
+                <li>Promoting authenticity in charity work, ensuring that donations reach the right people.</li>
+            </ul>
+            <h3 class="font-weight-bold" style="font-size: 1.75rem;">Our Vision</h3>
+            <p>At Danyog, we believe in creating a charity ecosystem that promotes kindness and support for those in need. We aim to reach out to individuals across Gujarat, focusing on various social issues including:</p>
+            <ul>
+                <li>Women Empowerment</li>
+                <li>Poverty Alleviation</li>
+                <li>Medical Assistance</li>
+                <li>Support for Orphanages</li>
+                <li>And more...</li>
+            </ul>
+            <h3 class="font-weight-bold" style="font-size: 1.75rem;">Join Us in Making a Difference!</h3>
+            <p>Your contributions, whether in kind or service, can have a significant impact on the lives of many. As we grow, we continue to seek out new ways to support our community and ensure that our efforts are felt where they are needed most.</p>
+        </section>
+    
+        <!-- Inspirational Verses Section -->
+        <section class="my-5">
+            <h2 class="font-weight-bold" style="font-size: 2rem;">Inspirational Verses</h2>
+            <blockquote class="blockquote">
+                <p><strong>Bhagavad Gita: Chapter 17, Verse 20</strong><br>
+                "Charity given to a worthy person simply because it is right to give, without consideration of anything in return, at the proper time and in the proper place, is stated to be in the mode of goodness."</p>
+            </blockquote>
+            <blockquote class="blockquote">
+                <p><strong>The Holy Quran Chapter 2 Surah Baqarah verse 274</strong><br>
+                "Those who spend of their goods (in charity) by night and by day in secret and in public shall have their reward with their Lord: on them shall be no fear nor shall they grieve."</p>
+            </blockquote>
+            <blockquote class="blockquote">
+                <p><strong>The Holy Bible Proverbs 19:17</strong><br>
+                "One who is gracious to a poor man lends to the Lord, and He will repay him for his good deed."</p>
+            </blockquote>
+        </section>
+    
+        <!-- Donation Section -->
+        <section class="text-center my-5">
+            <h2 class="font-weight-bold" style="font-size: 2rem;">Donate Your Old Stuff!</h2>
+            <p>By donating your old items, you can help bring joy to those who need it the most. Click the button below to get started!</p>
+            <a href="{% url 'userauth:login' %}" class="btn btn-primary btn-lg">Donate Now</a>
+        </section>
+    </main>
+
+
+
+    {% endblock %}

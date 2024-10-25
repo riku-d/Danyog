@@ -1,0 +1,50 @@
+{% extends "partials/base.html" %}
+{% block content %}
+
+<section class="order-confirmation py-5">
+    <div class="container">
+        <!-- Order Confirmation Heading -->
+        <div class="row mb-4">
+            <div class="col-lg-12 text-center">
+                <h2 class="mb-3">Order Confirmation</h2>
+                <p>Your order has been placed successfully. Please provide proof of delivery once received.</p>
+            </div>
+        </div>
+
+        <!-- Delivery Details and Item Image -->
+        <div class="row">
+            <div class="col-lg-6">
+                <h4>Delivery Details</h4>
+                <p><strong>Item:</strong> {{ order.item.name }}</p>
+                <p><strong>Delivery Address:</strong> {{ order.orphanage.address }}</p>
+                <p><strong>Estimated Delivery Date:</strong> {{ order.estimated_delivery_date }}</p>
+            </div>
+            <div class="col-lg-6">
+                <!-- Display the ordered item's picture -->
+                <h4>Ordered Item Image</h4>
+                <img src="{{ order.item.image.url }}" alt="{{ order.item.name }}" class="img-fluid" style="max-width: 70%; height: auto;">
+            </div>
+        </div>
+
+        <!-- Upload Proof of Delivery Form -->
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                <h4>Upload Proof of Delivery</h4>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <label for="proof_image"><strong>Upload Picture:</strong></label>
+                        <input type="file" name="proof_image" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="review"><strong>Review:</strong></label>
+                        <textarea name="review" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="site-btn btn-primary">Submit Proof</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
